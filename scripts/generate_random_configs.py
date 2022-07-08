@@ -16,7 +16,8 @@ import tpbp_functions as fn
 if __name__ == '__main__':
     dir_name = rospkg.RosPack().get_path('mrpp_sumo')
     if len(sys.argv[1:]) == 0:
-        graph_name = ['complex_final']
+        graph_name = ['complex_final','grid_5_5','first','grid_5_5_final']
+
         multiplicity = 1
 
         algo_name = 'without_intent_cr'
@@ -32,8 +33,9 @@ if __name__ == '__main__':
         # max_divisions = 10
         # eps_prob = 0
         init_bots = [1, 3, 5, 7]
-        no_of_deads = [1,12,25]
-        no_runs = 2
+        no_of_deads = [0,7,12,18,25]
+        no_runs = 3
+
         sim_length = 30000
         # discount_factors = [1]
         i = 0

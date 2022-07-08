@@ -59,6 +59,7 @@ class CR:
             for n in data.node_id:
                 node_index = self.nodes.index(n)
                 self.global_idle[node_index] = 0
+                
                 if n not in self.dead_nodes:
                     self.network_arr['node_{}'.format(n)][n] = 0
                     for neigh_node in list(self.graph.predecessors(n)) :
@@ -104,6 +105,7 @@ class CR:
         np.save(self.sim_dir+"/data.npy",self.data_arr)
         np.save(self.sim_dir+"/dead_nodes.npy",self.dead_nodes)
         np.save(self.sim_dir+"/stamps.npy",self.stamps)
+        np.save(self.sim_dir+"/nodes.npy",np.array(self.nodes))
         print("Data saved!")
 
 

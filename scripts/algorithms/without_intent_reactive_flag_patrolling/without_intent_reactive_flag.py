@@ -32,7 +32,7 @@ class CR:
         self.no_of_deads = rospy.get_param("/no_of_deads")
         self.nodes = list(self.graph.nodes())
         self.dead_nodes = rng.choice(self.nodes,self.no_of_deads,replace=False)
-
+        
         # Variable for storing data in sheets
         self.data_arr = np.zeros([1,len(self.nodes)])
         self.global_idle = np.zeros(len(self.nodes))
@@ -69,6 +69,7 @@ class CR:
             self.global_idle +=dev
             self.stamps = np.append(self.stamps,self.stamp)
             self.data_arr = np.append(self.data_arr,[self.global_idle],axis=0)
+            # print(self.global_idle,self.nodes,n,node_index)
     
     def callback_next_task(self, req):
         node = req.node_done
@@ -103,6 +104,8 @@ class CR:
         np.save(self.sim_dir+"/data.npy",self.data_arr)
         np.save(self.sim_dir+"/dead_nodes.npy",self.dead_nodes)
         np.save(self.sim_dir+"/stamps.npy",self.stamps)
+        np.save(self.sim_dir+"/nodes.npy",np.array(self.nodes))
+        # print(self.dead_nodes)
         print("Data saved!")
 
 if __name__ == '__main__':
